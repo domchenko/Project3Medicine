@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<drugs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="medicine.xsd"
+  xmlns:packagespace="http://www.example.net/test">
+  <medicine id="ID1">
+    <name>Angilex</name>
+    <pharm>Pharmak</pharm>
+    <group>ANTISEPTIC</group>
+    <analogs>
+      <analog>Tandum Verde</analog>
+      <analog>Hivalex</analog>
+    </analogs>
+    <versions>
+      <version type="Spray">
+        <certificate number="RO2AA20" dateFrom="2012-01-31" dateTo="2016-01-31">
+          <organization>UAPharma</organization>
+        </certificate>
+        <package>
+          <packagespace:name>Flacon small</packagespace:name>
+          <packagespace:amount measure="ml">50</packagespace:amount>
+          <packagespace:price currency="UAH">78</packagespace:price>
+        </package>
+        <dosage>
+          <number>1</number>
+          <periodicity>2</periodicity>
+        </dosage>
+      </version>
+      <version type="Solute">
+        <certificate number="RO2AA21" dateFrom="2012-02-15" dateTo="2016-02-15">
+          <organization>ABC Chemistry</organization>
+        </certificate>
+        <package>
+          <packagespace:name>Flacon medium</packagespace:name>
+          <packagespace:amount measure="ml">120</packagespace:amount>
+          <packagespace:price currency="UAH">125</packagespace:price>
+        </package>
+        <dosage>
+          <number>1</number>
+          <periodicity>3</periodicity>
+        </dosage>
+      </version>
+    </versions>
+  </medicine>
+  
+  <medicine id="ID2">
+    <name>Nimesil</name>
+    <pharm>Laboratori GUIDOTTI S.p.A.Menarini</pharm>
+    <group>ANALGESICS</group>
+    <analogs>
+      <analog>Paracetamol</analog>
+    </analogs>
+    <versions>
+      <version type="Granules">
+        <certificate number="RO8AD27" dateFrom="2014-08-15" dateTo="2018-08-15">
+          <organization>UAPharma-2</organization>
+        </certificate>
+        <package>
+          <packagespace:name>Package</packagespace:name>
+          <packagespace:amount measure="g">10</packagespace:amount>
+          <packagespace:price currency="USD">16</packagespace:price>
+        </package>
+        <dosage>
+          <number>2</number>
+          <periodicity>14</periodicity>
+        </dosage>
+      </version>
+    </versions>
+  </medicine>
+</drugs>

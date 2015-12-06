@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+  xmlns:packagespace="http://www.example.net/test"> 
+
+<xs:import schemaLocation="packagespace.xsd" namespace="http://www.example.net/test"/>
+    
+<xs:simpleType name="str">
+   <xs:restriction base="xs:string">
+     <xs:minLength value="1"/>
+     <xs:whiteSpace value="collapse"/>
+   </xs:restriction>
+</xs:simpleType>
+
+
+<!-- Elements declaration -->
+<xs:element name="medicine" type="medicineType">
+  <xs:annotation>
+    <xs:documentation xml:lang="en">A drug or medicine</xs:documentation>
+  </xs:annotation>
+</xs:element>
+<xs:element name="name" type="str">
+  <xs:annotation>
+    <xs:documentation xml:lang="en">Name of a drug or medicine</xs:documentation>
+  </xs:annotation>
+</xs:element>
+<xs:element name="pharm" type="str">
+  <xs:annotation>
+    <xs:documentation xml:lang="en">Name of the producer</xs:documentation>
+  </xs:annotation>
+</xs:element>
+<xs:element name="group">
+  <xs:simpleType>
+    <xs:annotation>
+      <xs:documentation xml:lang="en">Pharmalogical group of drugs</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ANALGESICS"/>
+      <xs:enumeration value="ANTISEPTIC"/>
+      <xs:enumeration value="CARDIOVASCULAR"/>
+      <xs:enumeration value="DIAGNOSTIC"/>
+      <xs:enumeration value="HOMEOPATHIC"/>
+      <xs:enumeration value="HORMONES"/>
+      <xs:enumeration value="VARIOUS"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:element>
+<xs:element name="analogs" type="analogsType">
+  <xs:annotation>
+    <xs:documentation xml:lang="en">Names of analogs</xs:documentation>
+  </xs:annotation>
+</xs:element>
+<xs:element name="versions" type="versionsType">
+  <xs:annotation>
+    <xs:documentation xml:lang="en">Product form</xs:documentation>
+  </xs:annotation>
+</xs:element>
+<xs:element name="certificate" type="certificateType">
+  <xs:annotation>
+    <xs:documentation xml:lang="en">Certificate of registration of the drug</xs:documentation>
+  </xs:annotation>
+</xs:element>
+<xs:element name="package" type="packagespace:packageType">
+  <xs:annotation>
+    <xs:documentation xml:lang="en">Package type</xs:documentation>
+  </xs:annotation>
+</xs:element>
+<xs:element name="dosage" type="dosageType">
+  <xs:annotation>
+    <xs:documentation xml:lang="en">The size or frequency of a dose of a medicine or drug</xs:documentation>
+  </xs:annotation>
+</xs:element>
+
+
+<xs:element name="drugs">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="medicine" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+<xs:complexType name="medicineType">    
+  <xs:sequence>
+    <xs:element ref="name"/>
+    <xs:element ref="pharm"/>
+    <xs:element ref="group"/>
+    <xs:element ref="analogs" minOccurs="0"/>
+    <xs:element ref="versions"/>
+  </xs:sequence>
+  <xs:attribute name="id" type="xs:ID" use="required"/>
+</xs:complexType>
+
+<xs:complexType name="analogsType">    
+  <xs:sequence>
+    <xs:element name="analog" type="str" maxOccurs="unbounded">
+      <xs:annotation>
+        <xs:documentation xml:lang="en">Name of analog</xs:documentation>
+      </xs:annotation>
+    </xs:element>
+  </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="versionsType">    
+  <xs:sequence>
+    <xs:element name="version" type="versionType" maxOccurs="unbounded"/>
+  </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="versionType">    
+  <xs:sequence>
+    <xs:element ref="certificate"/>
+    <xs:element ref="package"/>
+    <xs:element ref="dosage"/>
+  </xs:sequence>
+  <xs:attribute name="type" type="str" use="required"/>
+</xs:complexType>
+
+
+<xs:complexType name="certificateType">    
+  <xs:sequence>
+    <xs:element name="organization" type="str"/>
+  </xs:sequence>
+  <xs:attribute name="number" type="str" use="required"/>
+  <xs:attribute name="dateFrom" type="xs:date" use="required"/>
+  <xs:attribute name="dateTo" type="xs:date" use="required"/>
+</xs:complexType>
+
+<xs:complexType name="dosageType">   
+  <xs:sequence>
+    <xs:element name="number" type="xs:positiveInteger"/>
+    <xs:element name="periodicity" type="xs:positiveInteger"/>
+  </xs:sequence>
+</xs:complexType>
+
+</xs:schema>
